@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     apple: "/apple-touch-icon.webp",
   },
   openGraph: {
-    title: "Atsuko - Premium Discord Bot",
+    title: "Atsuko - Landing Page",
     description:
       "A bright, fast Discord bot for music, moderation, utilities, anime fun, Minecraft tools, and AI chat.",
     type: "website",
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary",
-    title: "Atsuko - Premium Discord Bot",
+    title: "Atsuko - Landing Page",
     description:
       "A bright, fast Discord bot for music, moderation, utilities, anime fun, Minecraft tools, and AI chat.",
   },
