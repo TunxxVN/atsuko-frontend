@@ -8,7 +8,14 @@ const inter = Inter({
   variable: "--font-inter",
 });
 
+const getBaseUrl = () => {
+  if (process.env.VERCEL_PROJECT_PRODUCTION_URL) return `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`;
+  if (process.env.VERCEL_URL) return `https://${process.env.VERCEL_URL}`;
+  return "http://localhost:3000";
+};
+
 export const metadata: Metadata = {
+  metadataBase: new URL(getBaseUrl()),
   title: "Atsuko - Premium Discord Bot",
   description:
     "A bright, fast Discord bot for music, moderation, utilities, anime fun, Minecraft tools, and AI chat.",
