@@ -9,7 +9,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Atsuko - Premium Discord Bot",
+  title: "Atsuko - Landing Page",
   description:
     "A bright, fast Discord bot for music, moderation, utilities, anime fun, Minecraft tools, and AI chat.",
   keywords: ["Atsuko", "Discord bot", "music bot", "moderation bot", "AI chat", "Minecraft"],
