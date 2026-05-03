@@ -1,0 +1,258 @@
+export type CommandCategory =
+  | "admin"
+  | "ai"
+  | "fun"
+  | "image"
+  | "info"
+  | "minecraft"
+  | "moderation"
+  | "music"
+  | "utility";
+
+export interface BotCommand {
+  name: string;
+  description: string;
+  category: CommandCategory;
+  subcommands?: { name: string; description: string }[];
+}
+
+export const categoryLabels: Record<CommandCategory, string> = {
+  admin: "Admin",
+  ai: "AI",
+  fun: "Fun & Games",
+  image: "Anime",
+  info: "Info",
+  minecraft: "Minecraft",
+  moderation: "Moderation",
+  music: "Music",
+  utility: "Utilities",
+};
+
+export const categoryOrder: CommandCategory[] = [
+  "music",
+  "moderation",
+  "utility",
+  "image",
+  "minecraft",
+  "fun",
+  "ai",
+  "admin",
+  "info",
+];
+
+export const botCommands: BotCommand[] = [
+  {
+    name: "autorole",
+    description: "Manage automatic role assignment for new members",
+    category: "admin",
+    subcommands: [
+      { name: "add", description: "Add role to autorole system" },
+      { name: "remove", description: "Remove role from autorole system" },
+      { name: "view", description: "View all autoroles" },
+      { name: "clear", description: "Clear all autoroles" },
+      { name: "bulk-add", description: "Add multiple roles at once" },
+    ],
+  },
+  { name: "diagnostics", description: "View bot runtime diagnostics", category: "admin" },
+  {
+    name: "giveaway",
+    description: "Manage giveaways in your server",
+    category: "admin",
+    subcommands: [
+      { name: "start", description: "Start a giveaway with slash options" },
+      { name: "start-modal", description: "Start a giveaway with modal input" },
+      { name: "reroll", description: "Reroll winners for an ended giveaway" },
+      { name: "end", description: "End an active giveaway" },
+      { name: "cancel", description: "Cancel an active giveaway" },
+      { name: "extend", description: "Extend an active giveaway duration" },
+      { name: "list", description: "List active giveaways" },
+    ],
+  },
+  { name: "guildsettings", description: "View and manage server settings", category: "admin" },
+  {
+    name: "serverlogs",
+    description: "Configure server logging",
+    category: "admin",
+    subcommands: [
+      { name: "setchannel", description: "Set log channel" },
+      { name: "toggle", description: "Toggle log category" },
+      { name: "status", description: "Show log status" },
+      { name: "reset", description: "Reset all log settings" },
+    ],
+  },
+  { name: "snipe", description: "View recently deleted messages in this channel", category: "admin" },
+  { name: "chat", description: "Chat with Atsuko AI", category: "ai" },
+  { name: "8ball", description: "Ask Magic 8 Ball question", category: "fun" },
+  { name: "activities", description: "Start Discord activities in voice channels", category: "fun" },
+  {
+    name: "games",
+    description: "Play exciting mini-games with friends and challenge yourself",
+    category: "fun",
+    subcommands: [
+      { name: "2048", description: "Merge numbered tiles to reach 2048 in this addictive puzzle game" },
+      { name: "connect4", description: "Connect four colored discs in row to beat your opponent" },
+      { name: "flood", description: "Fill the board with one color in as few moves as possible" },
+      { name: "minesweeper", description: "Clear minefield without hitting any bombs - classic puzzle" },
+      { name: "rps", description: "Challenge to classic Rock Paper Scissors game" },
+      { name: "tictactoe", description: "Get three in row in this classic strategy game" },
+      { name: "trivia", description: "Test your knowledge with challenging trivia questions" },
+      { name: "wordle", description: "Guess 5-letter word in 6 tries - daily word puzzle" },
+    ],
+  },
+  { name: "impersonate", description: "Create fake message from another user", category: "fun" },
+  { name: "meme", description: "Get meme from r/memes", category: "fun" },
+  { name: "pp", description: "Generate random pp size with compliment", category: "fun" },
+  { name: "ship", description: "Match two users and check their love compatibility", category: "fun" },
+  {
+    name: "act",
+    description: "Perform anime actions",
+    category: "image",
+    subcommands: [
+      { name: "shoot", description: "Shoot someone" },
+      { name: "poke", description: "Poke someone" },
+      { name: "tickle", description: "Tickle someone" },
+      { name: "yeet", description: "Yeet someone" },
+      { name: "highfive", description: "High five someone" },
+      { name: "feed", description: "Feed someone" },
+      { name: "bite", description: "Bite someone" },
+      { name: "cuddle", description: "Cuddle someone" },
+      { name: "kick", description: "Kick someone" },
+      { name: "hug", description: "Hug someone" },
+      { name: "pat", description: "Pat someone" },
+      { name: "kiss", description: "Kiss someone" },
+      { name: "punch", description: "Punch someone" },
+      { name: "handshake", description: "Handshake with someone" },
+      { name: "slap", description: "Slap someone" },
+      { name: "cry", description: "Cry" },
+      { name: "handhold", description: "Hold hands with someone" },
+    ],
+  },
+  {
+    name: "anime",
+    description: "Search for anime information using AniList database",
+    category: "image",
+    subcommands: [{ name: "lookup", description: "Search for anime information using AniList database" }],
+  },
+  {
+    name: "art",
+    description: "Get anime art images",
+    category: "image",
+    subcommands: [
+      { name: "random", description: "Get random anime art" },
+      { name: "neko", description: "Get random neko art" },
+      { name: "waifu", description: "Get random waifu art" },
+      { name: "husbando", description: "Get random husbando art" },
+      { name: "kitsune", description: "Get random kitsune art" },
+    ],
+  },
+  {
+    name: "emote",
+    description: "Send anime emotes",
+    category: "image",
+    subcommands: [
+      { name: "shrug", description: "Send a shrug emote" },
+      { name: "stare", description: "Send a stare emote" },
+      { name: "wave", description: "Send a wave emote" },
+      { name: "smile", description: "Send a smile emote" },
+      { name: "wink", description: "Send a wink emote" },
+      { name: "blush", description: "Send a blush emote" },
+      { name: "smug", description: "Send a smug emote" },
+      { name: "think", description: "Send a think emote" },
+      { name: "bored", description: "Send a bored emote" },
+      { name: "yawn", description: "Send a yawn emote" },
+      { name: "facepalm", description: "Send a facepalm emote" },
+      { name: "happy", description: "Send a happy emote" },
+      { name: "angry", description: "Send an angry emote" },
+      { name: "nod", description: "Send a nod emote" },
+      { name: "nope", description: "Send a nope emote" },
+      { name: "thumbsup", description: "Send a thumbs up emote" },
+      { name: "laugh", description: "Send a laugh emote" },
+      { name: "pout", description: "Send a pout emote" },
+    ],
+  },
+  { name: "nsfw", description: "Browse NSFW image commands (18+ only)", category: "image" },
+  { name: "botinfo", description: "Display information and statistics about bot", category: "info" },
+  { name: "changelog", description: "View changelog of bot", category: "info" },
+  { name: "channelinfo", description: "Display detailed information about channel", category: "info" },
+  { name: "help", description: "Show help menu", category: "info" },
+  { name: "ping", description: "Check bot's latency and performance metrics", category: "info" },
+  { name: "roleinfo", description: "Display information about a role", category: "info" },
+  { name: "serverinfo", description: "Display information about server", category: "info" },
+  { name: "userinfo", description: "Display detailed info of any user", category: "info" },
+  { name: "achievement", description: "Generate custom Minecraft-style achievement", category: "minecraft" },
+  { name: "serverstatus", description: "Check status of Minecraft server", category: "minecraft" },
+  { name: "skin", description: "Fetch Minecraft player's skin", category: "minecraft" },
+  { name: "ban", description: "Ban user from server with optional duration", category: "moderation" },
+  { name: "kick", description: "Kick user from server", category: "moderation" },
+  { name: "lock", description: "Lock current channel", category: "moderation" },
+  { name: "nick", description: "Change user's nickname", category: "moderation" },
+  { name: "nuke", description: "Nuke (clone and delete) current channel", category: "moderation" },
+  { name: "purge", description: "Bulk delete messages", category: "moderation" },
+  { name: "slowmode", description: "Set or remove slowmode for channel", category: "moderation" },
+  { name: "timeout", description: "Timeout user for specified duration", category: "moderation" },
+  { name: "unban", description: "Unban user from server", category: "moderation" },
+  { name: "unlock", description: "Unlock current channel", category: "moderation" },
+  { name: "untimeout", description: "Remove timeout from user", category: "moderation" },
+  {
+    name: "warn",
+    description: "Warn user or remove warning",
+    category: "moderation",
+    subcommands: [
+      { name: "add", description: "Add warning to user" },
+      { name: "remove", description: "Remove warning by ID" },
+    ],
+  },
+  { name: "warnings", description: "View user's warnings", category: "moderation" },
+  { name: "filters", description: "Apply audio filters to enhance your music", category: "music" },
+  { name: "join", description: "Join your voice channel", category: "music" },
+  { name: "leave", description: "Leave voice channel and stop music", category: "music" },
+  { name: "loop", description: "Set loop mode for current track or queue", category: "music" },
+  { name: "lyrics", description: "Get lyrics for current song or search for any song", category: "music" },
+  { name: "pause", description: "Pause or resume current track", category: "music" },
+  { name: "play", description: "Play music from many sources", category: "music" },
+  { name: "playlist-addtrack", description: "Add track to your playlist", category: "music" },
+  { name: "playlist-create", description: "Create new playlist", category: "music" },
+  { name: "playlist-delete", description: "Delete one of your playlists", category: "music" },
+  { name: "playlist-info", description: "Show detailed information about playlist", category: "music" },
+  { name: "playlist-list", description: "Show all your playlists", category: "music" },
+  { name: "playlist-load", description: "Load playlist into music queue", category: "music" },
+  { name: "playlist-removetrack", description: "Remove track from your playlist", category: "music" },
+  { name: "queue", description: "Show current music queue", category: "music" },
+  { name: "shuffle", description: "Shuffle current queue", category: "music" },
+  { name: "skip", description: "Skip current track", category: "music" },
+  { name: "stop", description: "Stop music and clear queue", category: "music" },
+  { name: "volume", description: "Set music volume (1-100%)", category: "music" },
+  { name: "ascii", description: "Convert text to ASCII art with various fonts", category: "utility" },
+  {
+    name: "autoembed",
+    description: "Configure auto-embed for media links",
+    category: "utility",
+    subcommands: [
+      { name: "info", description: "Configure auto-embed for media links" },
+      { name: "status", description: "Turn auto-embed on or off" },
+      { name: "webhook", description: "Turn webhook auto-embed on or off" },
+      { name: "blacklist-list", description: "List channels where auto-embed is disabled (Blacklist)" },
+      { name: "blacklist-add", description: "Add channel to blacklist" },
+      { name: "blacklist-remove", description: "Remove channel from blacklist" },
+    ],
+  },
+  { name: "avatar", description: "Display user avatars", category: "utility" },
+  { name: "bot-suggest", description: "Suggest new feature or improvement for bot", category: "utility" },
+  { name: "bug-report", description: "Report bug or issue with bot", category: "utility" },
+  { name: "define", description: "Get definition of any word", category: "utility" },
+  {
+    name: "media",
+    description: "Convert supported media links into Discord-playable videos",
+    category: "utility",
+    subcommands: [{ name: "embed", description: "Fix supported media link for Discord embeds" }],
+  },
+  { name: "qr", description: "Generate QR codes from text or URLs", category: "utility" },
+  { name: "translate", description: "Translate text to any language", category: "utility" },
+  { name: "weather", description: "Get weather info anywhere worldwide", category: "utility" },
+];
+
+export const commandCount = botCommands.length;
+
+export const heroCommands = ["play", "ban", "chat", "anime", "weather", "autorole"]
+  .map((name) => botCommands.find((command) => command.name === name))
+  .filter((command): command is BotCommand => Boolean(command));
