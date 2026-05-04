@@ -216,7 +216,7 @@ export function CommandsSection() {
               <span>Category</span>
             </div>
 
-            <motion.div layout className="divide-y divide-white/8">
+            <motion.div className="divide-y divide-white/8">
               {visibleCommands.map((command, index) => {
                 const Icon = categoryIcons[command.category];
                 const hasSubcommands = Boolean(command.subcommands?.length);
@@ -225,7 +225,6 @@ export function CommandsSection() {
                 return (
                   <motion.article
                     key={command.name}
-                    layout
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 0.22 }}

@@ -146,7 +146,7 @@ export function HomeHero() {
             <motion.div
               animate={{ y: [0, -6, 0], rotate: [0, 1, 0] }}
               transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute left-[37%] top-[38%] z-[2] w-[min(60vw,280px)] -translate-x-1/2 -translate-y-1/2 sm:left-[48%] sm:top-[31%] sm:w-[min(76vw,400px)] lg:left-[40%] lg:w-[min(28vw,420px)]"
+              className="absolute left-[37%] top-[38%] z-[2] w-[min(60vw,280px)] -translate-x-1/2 -translate-y-1/2 will-change-transform sm:left-[48%] sm:top-[31%] sm:w-[min(76vw,400px)] lg:left-[40%] lg:w-[min(28vw,420px)]"
             >
               <div className="relative aspect-[1.02]">
                 <div className="absolute inset-[12%] rotate-[-10deg] rounded-[32px] border border-atsuko-cyan/50 bg-[#071526]/92 shadow-[0_0_32px_rgba(37,207,255,.28)]" />
