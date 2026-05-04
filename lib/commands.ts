@@ -251,8 +251,3 @@ export const botCommands: BotCommand[] = [
   { name: "weather", description: "Get weather info anywhere worldwide", category: "utility" },
 ];
 
-export const commandCount = botCommands.length;
-
-export const heroCommands = ["play", "ban", "chat", "anime", "weather", "autorole"]
-  .map((name) => botCommands.find((command) => command.name === name))
-  .filter((command): command is BotCommand => Boolean(command));

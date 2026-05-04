@@ -6,7 +6,6 @@ import {
   ArrowRight,
   Bot,
   Box,
-  Gamepad2,
   Heart,
   Music,
   Shield,
@@ -18,7 +17,6 @@ import {
 
 import { hoverLift } from "@/components/motion/fade-in";
 import { Button } from "@/components/ui/button";
-import { categoryLabels, heroCommands } from "@/lib/commands";
 import { cn } from "@/lib/utils";
 
 const atsukoLogoImage = "/assets/atsuko-logo.webp";
@@ -62,17 +60,7 @@ const cubeRows = [
   { label: "AI Chat", icon: Bot },
 ];
 
-const commandIcon = {
-  music: Music,
-  moderation: Shield,
-  ai: Bot,
-  image: Star,
-  utility: Wrench,
-  admin: Shield,
-  fun: Gamepad2,
-  info: Sparkles,
-  minecraft: Box,
-} as const;
+
 
 export function HomeHero() {
   return (
