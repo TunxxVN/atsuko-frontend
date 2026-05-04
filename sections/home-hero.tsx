@@ -168,7 +168,7 @@ export function HomeHero() {
                           initial={{ opacity: 0, x: 20 }}
                           animate={{ opacity: 1, x: 0 }}
                           transition={{ delay: 0.38 + index * 0.07, duration: 0.42 }}
-                          className="flex items-center gap-3 rounded-md border border-white/8 bg-white/5 px-3 py-2 text-sm font-medium text-slate-100"
+                          className="flex items-center gap-3 whitespace-nowrap rounded-md border border-white/8 bg-white/5 px-3 py-2 text-sm font-medium text-slate-100"
                         >
                           <Icon className="size-4 text-atsuko-cyan" />
                           {row.label}
