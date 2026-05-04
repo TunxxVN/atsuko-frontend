@@ -233,31 +233,41 @@ export function CommandsSection() {
                   >
                     <motion.button
                       type="button"
-                      whileHover={{ backgroundColor: "rgba(255,255,255,0.035)" }}
                       transition={{ duration: 0.18 }}
                       onClick={() => setExpandedCommand(isExpanded ? null : command.name)}
                       disabled={!hasSubcommands}
                       className={cn(
-                        "grid w-full grid-cols-1 gap-3 px-5 py-3.5 text-left transition md:grid-cols-[minmax(145px,0.5fr)_1fr_120px] md:items-center",
+                        "w-full px-5 py-3.5 text-left transition hover:bg-white/[0.035]",
                         hasSubcommands ? "cursor-pointer" : "cursor-default",
                       )}
                       aria-expanded={hasSubcommands ? isExpanded : undefined}
                     >
-                        <span className="flex min-w-0 items-center gap-3">
-                          <span className="flex size-9 shrink-0 items-center justify-center rounded-md border border-white/10 bg-white/6">
-                            <Icon className="size-4 text-atsuko-cyan" />
+                        <div className="grid grid-cols-1 gap-3 md:grid-cols-[minmax(145px,0.5fr)_1fr_120px] md:items-center">
+                          <span className="flex min-w-0 items-center gap-3">
+                            <span className="flex size-9 shrink-0 items-center justify-center rounded-md border border-white/10 bg-white/6">
+                              <Icon className="size-4 text-atsuko-cyan" />
+                            </span>
+                            <span className="truncate font-mono text-[13px] font-semibold text-white">/{command.name}</span>
+                            {hasSubcommands ? (
+                              <motion.span
+                                animate={{ rotate: isExpanded ? 180 : 0 }}
+                                transition={{ duration: 0.2 }}
+                                className="ml-auto shrink-0 md:hidden"
+                              >
+                                <ChevronDown className="size-4 text-slate-500" />
+                              </motion.span>
+                            ) : null}
                           </span>
-                          <span className="truncate font-mono text-[13px] font-semibold text-white">/{command.name}</span>
-                        </span>
-                        <span className="text-sm leading-6 text-slate-400">{command.description}</span>
-                        <span className="flex items-center justify-between gap-3 text-xs font-semibold text-pink-300">
-                          {categoryLabels[command.category]}
-                          {hasSubcommands ? (
-                            <motion.span animate={{ rotate: isExpanded ? 180 : 0 }} transition={{ duration: 0.2 }}>
-                              <ChevronDown className="size-4 text-slate-500" />
-                            </motion.span>
-                          ) : null}
-                        </span>
+                          <span className="text-sm leading-6 text-slate-400">{command.description}</span>
+                          <span className="flex items-center justify-between gap-3 text-xs font-semibold text-pink-300 max-md:hidden">
+                            {categoryLabels[command.category]}
+                            {hasSubcommands ? (
+                              <motion.span animate={{ rotate: isExpanded ? 180 : 0 }} transition={{ duration: 0.2 }}>
+                                <ChevronDown className="size-4 text-slate-500" />
+                              </motion.span>
+                            ) : null}
+                          </span>
+                        </div>
                     </motion.button>
 
                     <AnimatePresence initial={false}>
