@@ -158,7 +158,7 @@ export function HomeHero() {
                     </div>
                   </div>
                 </div>
-                <div className="absolute inset-x-[24%] bottom-[8%] rounded-2xl border border-white/15 bg-slate-950/35 p-4 shadow-panel backdrop-blur">
+                <div className="absolute inset-x-[16%] bottom-[8%] rounded-2xl border border-white/15 bg-slate-950/35 p-4 shadow-panel backdrop-blur sm:inset-x-[24%]">
                   <div className="space-y-2">
                     {cubeRows.map((row, index) => {
                       const Icon = row.icon;
@@ -170,7 +170,7 @@ export function HomeHero() {
                           transition={{ delay: 0.38 + index * 0.07, duration: 0.42 }}
                           className="flex items-center gap-3 whitespace-nowrap rounded-md border border-white/8 bg-white/5 px-3 py-2 text-sm font-medium text-slate-100"
                         >
-                          <Icon className="size-4 text-atsuko-cyan" />
+                          <Icon className="size-4 shrink-0 text-atsuko-cyan" />
                           {row.label}
                         </motion.div>
                       );
