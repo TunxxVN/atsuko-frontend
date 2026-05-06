@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 
+import { MotionProvider } from "@/components/motion/motion-provider";
+
 import "./globals.css";
 
 const inter = Inter({
@@ -39,7 +41,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         suppressHydrationWarning
         className={`${inter.variable} min-h-screen bg-background font-sans text-foreground antialiased`}
       >
-        {children}
+        <MotionProvider>{children}</MotionProvider>
       </body>
     </html>
   );
