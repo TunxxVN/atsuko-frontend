@@ -5,10 +5,11 @@ import { AnimatePresence, motion } from "framer-motion";
 
 import { AtsukoLogo } from "@/components/site/logo";
 import { Button } from "@/components/ui/button";
+import { tunxUrl } from "@/lib/links";
 import { cn } from "@/lib/utils";
 
 const navItems = ["Home", "Commands", "Invite"];
-const tunxUrl = "https://discord.com/users/677792501410693120";
+const mobileMenuId = "mobile-navigation-menu";
 
 export function Navbar() {
   const [activeSection, setActiveSection] = useState("home");
@@ -33,6 +34,19 @@ export function Navbar() {
     sections.forEach((section) => observer.observe(section));
     return () => observer.disconnect();
   }, []);
+
+  useEffect(() => {
+    if (!mobileOpen) return;
+
+    function handleKeyDown(event: KeyboardEvent) {
+      if (event.key === "Escape") {
+        setMobileOpen(false);
+      }
+    }
+
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [mobileOpen]);
 
   return (
     <motion.header
@@ -82,6 +96,8 @@ export function Navbar() {
             size="icon"
             variant="ghost"
             aria-label={mobileOpen ? "Close navigation" : "Open navigation"}
+            aria-controls={mobileMenuId}
+            aria-expanded={mobileOpen}
             onClick={() => setMobileOpen((prev) => !prev)}
           >
             <motion.span
@@ -106,6 +122,7 @@ export function Navbar() {
       <AnimatePresence>
         {mobileOpen ? (
           <motion.div
+            id={mobileMenuId}
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}

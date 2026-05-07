@@ -4,9 +4,7 @@ import { motion } from "framer-motion";
 import { ArrowRight, Bot, Shield, Sparkles } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
-
-const atsukoInviteUrl =
-  "https://discord.com/oauth2/authorize?client_id=1130772002580475954&permissions=8&integration_type=0&scope=bot";
+import { atsukoInviteUrl } from "@/lib/links";
 
 export function InviteSection() {
   return (

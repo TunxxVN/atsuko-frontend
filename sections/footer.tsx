@@ -1,10 +1,7 @@
 import { Github, Heart } from "lucide-react";
 
 import { AtsukoLogo } from "@/components/site/logo";
-
-const discordInviteUrl = "https://discord.gg/atsuko";
-const githubUrl = "https://github.com/TunxxVN/atsuko-frontend";
-const tunxUrl = "https://discord.com/users/677792501410693120";
+import { discordInviteUrl, githubUrl, tunxUrl } from "@/lib/links";
 
 export function Footer() {
   return (

@@ -17,12 +17,10 @@ import {
 
 import { hoverLift } from "@/components/motion/fade-in";
 import { Button } from "@/components/ui/button";
+import { atsukoInviteUrl, tunxUrl } from "@/lib/links";
 import { cn } from "@/lib/utils";
 
 const atsukoLogoImage = "/assets/atsuko-logo.webp";
-const atsukoInviteUrl =
-  "https://discord.com/oauth2/authorize?client_id=1130772002580475954&permissions=8&integration_type=0&scope=bot";
-const tunxUrl = "https://discord.com/users/677792501410693120";
 
 const benefits = [
   {
