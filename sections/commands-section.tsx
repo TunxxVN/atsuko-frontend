@@ -16,14 +16,13 @@ import {
   Star,
   Terminal,
   Wrench,
+  X,
 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { botCommands, categoryLabels, categoryOrder, type BotCommand, type CommandCategory } from "@/lib/commands";
+import { atsukoInviteUrl } from "@/lib/links";
 import { cn } from "@/lib/utils";
-
-const atsukoInviteUrl =
-  "https://discord.com/oauth2/authorize?client_id=1130772002580475954&permissions=8&integration_type=0&scope=bot";
 
 const categoryIcons: Record<CommandCategory, typeof Music> = {
   admin: Shield,
@@ -71,7 +70,7 @@ export function CommandsSection() {
 
   useEffect(() => {
     function handleKeyDown(event: KeyboardEvent) {
-      if ((event.ctrlKey || event.metaKey) && event.key === "k") {
+      if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === "k") {
         event.preventDefault();
         searchRef.current?.focus();
       }
@@ -115,7 +114,7 @@ export function CommandsSection() {
           className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between"
         >
           <div>
-            <div className="mb-4 inline-flex items-center gap-2 rounded-md border border-atsuko-cyan/30 bg-cyan-400/8 px-3 py-1.5 text-sm font-medium text-cyan-100">
+            <div className="mb-4 inline-flex items-center gap-2 rounded-md border border-atsuko-cyan/30 bg-cyan-400/[0.08] px-3 py-1.5 text-sm font-medium text-cyan-100">
               <Terminal className="size-4 text-atsuko-cyan" />
               {botCommands.length} bot commands
             </div>
@@ -142,9 +141,7 @@ export function CommandsSection() {
                 className="rounded p-0.5 text-slate-400 transition hover:text-white"
                 aria-label="Clear search"
               >
-                <svg className="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
-                  <path d="M18 6 6 18M6 6l12 12" />
-                </svg>
+                <X className="size-4" />
               </button>
             ) : (
               <kbd className="hidden rounded-md border border-white/10 bg-white/5 px-2 py-1 text-[10px] font-semibold text-slate-400 sm:block">
@@ -189,7 +186,7 @@ export function CommandsSection() {
                       "flex h-10 items-center justify-between rounded-md px-3 text-left text-sm font-semibold transition",
                       active
                         ? "bg-atsuko-cyan text-slate-950 shadow-neon"
-                        : "text-slate-300 hover:bg-white/7 hover:text-white",
+                        : "text-slate-300 hover:bg-white/[0.07] hover:text-white",
                     )}
                   >
                     <span className="inline-flex items-center gap-2">
@@ -216,11 +213,43 @@ export function CommandsSection() {
               <span>Category</span>
             </div>
 
-            <motion.div className="divide-y divide-white/8">
+            <motion.div className="divide-y divide-white/[0.08]">
               {visibleCommands.map((command, index) => {
                 const Icon = categoryIcons[command.category];
                 const hasSubcommands = Boolean(command.subcommands?.length);
                 const isExpanded = expandedCommand === command.name;
+                const commandRowClassName = cn(
+                  "w-full px-5 py-3.5 text-left transition",
+                  hasSubcommands ? "cursor-pointer hover:bg-white/[0.035]" : "cursor-default",
+                );
+                const commandRowContent = (
+                  <div className="grid grid-cols-1 gap-3 md:grid-cols-[minmax(145px,0.5fr)_1fr_120px] md:items-center">
+                    <span className="flex min-w-0 items-center gap-3">
+                      <span className="flex size-9 shrink-0 items-center justify-center rounded-md border border-white/10 bg-white/[0.06]">
+                        <Icon className="size-4 text-atsuko-cyan" />
+                      </span>
+                      <span className="truncate font-mono text-[13px] font-semibold text-white">/{command.name}</span>
+                      {hasSubcommands ? (
+                        <motion.span
+                          animate={{ rotate: isExpanded ? 180 : 0 }}
+                          transition={{ duration: 0.2 }}
+                          className="ml-auto shrink-0 md:hidden"
+                        >
+                          <ChevronDown className="size-4 text-slate-500" />
+                        </motion.span>
+                      ) : null}
+                    </span>
+                    <span className="text-sm leading-6 text-slate-400">{command.description}</span>
+                    <span className="flex items-center justify-between gap-3 text-xs font-semibold text-pink-300 max-md:hidden">
+                      {categoryLabels[command.category]}
+                      {hasSubcommands ? (
+                        <motion.span animate={{ rotate: isExpanded ? 180 : 0 }} transition={{ duration: 0.2 }}>
+                          <ChevronDown className="size-4 text-slate-500" />
+                        </motion.span>
+                      ) : null}
+                    </span>
+                  </div>
+                );
 
                 return (
                   <motion.article
@@ -230,44 +259,19 @@ export function CommandsSection() {
                     transition={{ duration: 0.22 }}
                     className={cn("group", index % 2 === 1 && "bg-white/[0.02]")}
                   >
-                    <motion.button
-                      type="button"
-                      transition={{ duration: 0.18 }}
-                      onClick={() => setExpandedCommand(isExpanded ? null : command.name)}
-                      disabled={!hasSubcommands}
-                      className={cn(
-                        "w-full px-5 py-3.5 text-left transition hover:bg-white/[0.035]",
-                        hasSubcommands ? "cursor-pointer" : "cursor-default",
-                      )}
-                      aria-expanded={hasSubcommands ? isExpanded : undefined}
-                    >
-                        <div className="grid grid-cols-1 gap-3 md:grid-cols-[minmax(145px,0.5fr)_1fr_120px] md:items-center">
-                          <span className="flex min-w-0 items-center gap-3">
-                            <span className="flex size-9 shrink-0 items-center justify-center rounded-md border border-white/10 bg-white/6">
-                              <Icon className="size-4 text-atsuko-cyan" />
-                            </span>
-                            <span className="truncate font-mono text-[13px] font-semibold text-white">/{command.name}</span>
-                            {hasSubcommands ? (
-                              <motion.span
-                                animate={{ rotate: isExpanded ? 180 : 0 }}
-                                transition={{ duration: 0.2 }}
-                                className="ml-auto shrink-0 md:hidden"
-                              >
-                                <ChevronDown className="size-4 text-slate-500" />
-                              </motion.span>
-                            ) : null}
-                          </span>
-                          <span className="text-sm leading-6 text-slate-400">{command.description}</span>
-                          <span className="flex items-center justify-between gap-3 text-xs font-semibold text-pink-300 max-md:hidden">
-                            {categoryLabels[command.category]}
-                            {hasSubcommands ? (
-                              <motion.span animate={{ rotate: isExpanded ? 180 : 0 }} transition={{ duration: 0.2 }}>
-                                <ChevronDown className="size-4 text-slate-500" />
-                              </motion.span>
-                            ) : null}
-                          </span>
-                        </div>
-                    </motion.button>
+                    {hasSubcommands ? (
+                      <motion.button
+                        type="button"
+                        transition={{ duration: 0.18 }}
+                        onClick={() => setExpandedCommand(isExpanded ? null : command.name)}
+                        className={commandRowClassName}
+                        aria-expanded={isExpanded}
+                      >
+                        {commandRowContent}
+                      </motion.button>
+                    ) : (
+                      <div className={commandRowClassName}>{commandRowContent}</div>
+                    )}
 
                     <AnimatePresence initial={false}>
                       {hasSubcommands && isExpanded ? (
@@ -276,7 +280,7 @@ export function CommandsSection() {
                           animate={{ height: "auto", opacity: 1 }}
                           exit={{ height: 0, opacity: 0 }}
                           transition={{ duration: 0.26, ease: [0.22, 1, 0.36, 1] }}
-                          className="overflow-hidden border-t border-white/8 bg-slate-950/30"
+                          className="overflow-hidden border-t border-white/[0.08] bg-slate-950/30"
                         >
                           <motion.div
                             initial="collapsed"
@@ -296,7 +300,7 @@ export function CommandsSection() {
                                   collapsed: { opacity: 0, y: -6 },
                                 }}
                                 transition={{ duration: 0.2 }}
-                                className="rounded-md border border-white/8 bg-white/[0.03] px-3 py-2"
+                                className="rounded-md border border-white/[0.08] bg-white/[0.03] px-3 py-2"
                               >
                                 <p className="font-mono text-xs font-semibold text-cyan-300">
                                   /{command.name} {subcommand.name}

@@ -1,12 +1,7 @@
-"use client";
-
-import { motion } from "framer-motion";
 import { ArrowRight, Bot, Shield, Sparkles } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
-
-const atsukoInviteUrl =
-  "https://discord.com/oauth2/authorize?client_id=1130772002580475954&permissions=8&integration_type=0&scope=bot";
+import { atsukoInviteUrl } from "@/lib/links";
 
 export function InviteSection() {
   return (
@@ -15,16 +10,10 @@ export function InviteSection() {
       <div className="absolute right-[12%] top-12 h-72 w-72 rounded-full bg-atsuko-pink/12 blur-3xl" />
       <div className="absolute bottom-0 left-[8%] h-72 w-72 rounded-full bg-atsuko-cyan/10 blur-3xl" />
 
-      <motion.div
-        initial={{ opacity: 0, y: 24 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-100px" }}
-        transition={{ duration: 0.62, ease: [0.22, 1, 0.36, 1] }}
-        className="relative mx-auto max-w-[1180px] px-5 sm:px-8"
-      >
+      <div className="relative mx-auto max-w-[1180px] px-5 motion-safe:animate-in motion-safe:fade-in motion-safe:slide-in-from-bottom-6 sm:px-8">
         <div className="glass-panel grid gap-8 rounded-[28px] p-7 sm:p-10 lg:grid-cols-[1fr_auto] lg:items-center">
           <div>
-            <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-atsuko-pink/30 bg-pink-400/8 px-3 py-1.5 text-sm font-medium text-pink-100">
+            <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-atsuko-pink/30 bg-pink-400/[0.08] px-3 py-1.5 text-sm font-medium text-pink-100">
               <Sparkles className="size-4 text-atsuko-pink" />
               Ready for your server
             </div>
@@ -56,7 +45,7 @@ export function InviteSection() {
             </div>
           ))}
         </div>
-      </motion.div>
+      </div>
     </section>
   );
 }

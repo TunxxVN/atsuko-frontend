@@ -15,14 +15,11 @@ import {
   Zap,
 } from "lucide-react";
 
-import { hoverLift } from "@/components/motion/fade-in";
 import { Button } from "@/components/ui/button";
+import { atsukoInviteUrl, tunxUrl } from "@/lib/links";
 import { cn } from "@/lib/utils";
 
 const atsukoLogoImage = "/assets/atsuko-logo.webp";
-const atsukoInviteUrl =
-  "https://discord.com/oauth2/authorize?client_id=1130772002580475954&permissions=8&integration_type=0&scope=bot";
-const tunxUrl = "https://discord.com/users/677792501410693120";
 
 const benefits = [
   {
@@ -60,7 +57,11 @@ const cubeRows = [
   { label: "AI Chat", icon: Bot },
 ];
 
-
+const buttonMotion = {
+  whileHover: { y: -4, scale: 1.015 },
+  whileTap: { scale: 0.98 },
+  transition: { type: "spring", stiffness: 340, damping: 24 },
+} as const;
 
 export function HomeHero() {
   return (
@@ -82,14 +83,14 @@ export function HomeHero() {
               initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.08, duration: 0.55 }}
-              className="mb-6 inline-flex items-center gap-2 rounded-full border border-atsuko-cyan/30 bg-cyan-400/8 px-3 py-1.5 text-sm font-medium text-cyan-100 shadow-[0_0_24px_rgba(37,207,255,.12)]"
+              className="mb-6 inline-flex items-center gap-2 rounded-full border border-atsuko-cyan/30 bg-cyan-400/[0.08] px-3 py-1.5 text-sm font-medium text-cyan-100 shadow-[0_0_24px_rgba(37,207,255,.12)]"
             >
               <Sparkles className="size-4 text-atsuko-cyan" />
               Everything your server needs
             </motion.div>
 
             <h1 className="neon-text text-5xl font-black leading-[0.96] sm:text-6xl lg:text-7xl">Atsuko</h1>
-            <p className="mt-7 max-w-[460px] text-lg font-medium leading-8 text-slate-100/92 sm:text-xl">
+            <p className="mt-7 max-w-[460px] text-lg font-medium leading-8 text-slate-100/[0.92] sm:text-xl">
               A bright, fast Discord bot for music, moderation, utilities, anime fun, Minecraft tools, and AI chat.
             </p>
 
@@ -99,14 +100,14 @@ export function HomeHero() {
               transition={{ delay: 0.22, duration: 0.55 }}
               className="mt-8 flex flex-row flex-wrap gap-4"
             >
-              <motion.div {...hoverLift}>
+              <motion.div {...buttonMotion}>
                 <Button asChild size="lg">
                   <a href={atsukoInviteUrl} target="_blank" rel="noreferrer">
                     Invite Atsuko <ArrowRight className="size-4" />
                   </a>
                 </Button>
               </motion.div>
-              <motion.div {...hoverLift}>
+              <motion.div {...buttonMotion}>
                 <Button asChild size="lg" variant="outline">
                   <a href="#commands">
                     View Commands <ArrowRight className="size-4 text-atsuko-pink" />
@@ -168,7 +169,7 @@ export function HomeHero() {
                           initial={{ opacity: 0, x: 20 }}
                           animate={{ opacity: 1, x: 0 }}
                           transition={{ delay: 0.38 + index * 0.07, duration: 0.42 }}
-                          className="flex items-center gap-3 whitespace-nowrap rounded-md border border-white/8 bg-white/5 px-3 py-2 text-sm font-medium text-slate-100"
+                          className="flex items-center gap-3 whitespace-nowrap rounded-md border border-white/[0.08] bg-white/5 px-3 py-2 text-sm font-medium text-slate-100"
                         >
                           <Icon className="size-4 shrink-0 text-atsuko-cyan" />
                           {row.label}
@@ -180,21 +181,21 @@ export function HomeHero() {
                 <motion.div
                   animate={{ opacity: [0.5, 1, 0.5], scale: [0.98, 1.02, 0.98] }}
                   transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                  className="absolute left-[3%] top-[37%] hidden rounded-2xl border border-atsuko-pink/45 bg-atsuko-pink/8 p-4 shadow-[0_0_22px_rgba(255,92,184,.24)] lg:block"
+                  className="absolute left-[3%] top-[37%] hidden rounded-2xl border border-atsuko-pink/45 bg-atsuko-pink/[0.08] p-4 shadow-[0_0_22px_rgba(255,92,184,.24)] lg:block"
                 >
                   <Bot className="size-9 text-atsuko-pink" />
                 </motion.div>
                 <motion.div
                   animate={{ y: [0, -5, 0], opacity: [0.7, 1, 0.7] }}
                   transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-                  className="absolute right-[12%] top-[24%] hidden rounded-2xl border border-atsuko-cyan/40 bg-cyan-400/8 p-3 shadow-[0_0_20px_rgba(37,207,255,.2)] backdrop-blur lg:block"
+                  className="absolute right-[12%] top-[24%] hidden rounded-2xl border border-atsuko-cyan/40 bg-cyan-400/[0.08] p-3 shadow-[0_0_20px_rgba(37,207,255,.2)] backdrop-blur lg:block"
                 >
                   <Sparkles className="size-7 text-atsuko-cyan" />
                 </motion.div>
                 <motion.div
                   animate={{ y: [0, 5, 0], opacity: [0.6, 0.92, 0.6], rotate: [0, -2, 0] }}
                   transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-                  className="absolute bottom-[20%] right-[8%] hidden rounded-2xl border border-lime-300/35 bg-lime-300/8 p-3 shadow-[0_0_18px_rgba(132,204,22,.18)] backdrop-blur lg:block"
+                  className="absolute bottom-[20%] right-[8%] hidden rounded-2xl border border-lime-300/35 bg-lime-300/[0.08] p-3 shadow-[0_0_18px_rgba(132,204,22,.18)] backdrop-blur lg:block"
                 >
                   <Box className="size-7 text-lime-300" />
                 </motion.div>
@@ -230,8 +231,6 @@ export function HomeHero() {
             );
           })}
         </motion.div>
-
-
       </div>
     </section>
   );

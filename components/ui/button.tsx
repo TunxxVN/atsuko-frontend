@@ -13,7 +13,7 @@ const buttonVariants = cva(
           "bg-atsuko-cyan text-slate-950 shadow-neon hover:bg-cyan-300 hover:shadow-[0_0_32px_rgba(37,207,255,.38)]",
         outline:
           "border border-atsuko-pink/50 bg-slate-950/30 text-white shadow-[0_0_16px_rgba(255,92,184,.08)] hover:bg-atsuko-pink/10 hover:text-white",
-        ghost: "text-slate-300 hover:bg-white/7 hover:text-white",
+        ghost: "text-slate-300 hover:bg-white/[0.07] hover:text-white",
       },
       size: {
         default: "h-11 px-5",
