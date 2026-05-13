@@ -1,11 +1,11 @@
-import { Github, Heart } from "lucide-react";
+import { CodeXml, Heart } from "lucide-react";
 
 import { AtsukoLogo } from "@/components/site/logo";
 import { discordInviteUrl, githubUrl, tunxUrl } from "@/lib/links";
 
 export function Footer() {
   return (
-    <footer className="relative border-t border-white/8 bg-[#020611]">
+    <footer className="relative border-t border-white/[0.08] bg-[#020611]">
       <div className="mx-auto flex max-w-[1450px] flex-col items-center gap-6 px-5 py-10 sm:flex-row sm:justify-between sm:px-8">
         <div className="flex flex-col items-center gap-3 sm:items-start">
           <AtsukoLogo />
@@ -27,7 +27,7 @@ export function Footer() {
               className="text-slate-400 transition hover:text-white"
               aria-label="GitHub"
             >
-              <Github className="size-5" />
+              <CodeXml className="size-5" />
             </a>
             <a
               href={discordInviteUrl}

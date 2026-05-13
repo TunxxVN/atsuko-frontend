@@ -92,7 +92,7 @@ export function Navbar() {
             Owner: <span className="font-bold text-atsuko-pink">Tunx</span>
           </a>
           <Button
-            className="md:hidden"
+            className="relative md:hidden"
             size="icon"
             variant="ghost"
             aria-label={mobileOpen ? "Close navigation" : "Open navigation"}
@@ -127,7 +127,7 @@ export function Navbar() {
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
-            className="overflow-hidden border-t border-white/8 md:hidden"
+            className="overflow-hidden border-t border-white/[0.08] md:hidden"
           >
             <div className="flex flex-col gap-1 px-5 py-4">
               {navItems.map((item) => {
